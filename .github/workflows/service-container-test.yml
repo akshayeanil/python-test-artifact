@@ -26,4 +26,4 @@ jobs:
 
       - name: Test the Flask app container
         run: |
-          curl --fail http://localhost:5000 || exit 1
+          curl --fail http://flask-app:5000 || exit 1
