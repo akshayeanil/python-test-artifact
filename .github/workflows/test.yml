@@ -4,7 +4,10 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-self-hosted, linux-self-hosted]
 
     steps:
       - name: Checkout code
@@ -28,5 +31,5 @@ jobs:
       - name: Upload test report as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test-report
+          name: test-report-${{ matrix.os }}
           path: reports/test-report.txt
